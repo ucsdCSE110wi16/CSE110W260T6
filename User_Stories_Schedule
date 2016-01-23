@@ -2,29 +2,29 @@ SideBySide:
 
 User Stories:
 Allow the creation of pairs (from two URLS) and a title/comment + category (possibly source names too.) 
-30 hours
+                30 hours
 Record user’s stats on articles’ read based on bias, their prefered topic, and possibly more.     
-10 hours
+                10 hours
 The ability to upvote (like) or downvote (dislike) an article pair. 
-5 hours
+                5 hours
 The ability to search for article pairs by source, name or bias. 
-10 hours
+                10 hours
 The ability to sort/filter article pairs based on their source (or bias) and/or name.
-20 hours
+                20 hours
 Viewing Pairs.
-5 hours
+                5 hours
 Viewing Pair list
-10 hours
+                10 hours
 Viewing Source list
-10 hours
+                10 hours
 Viewing stats
-10 hours 
+                10 hours 
 The ability to share pairs with peers via email or text message. 
-30 hours
+                30 hours
 Sending user stats. 
-40 hours 
+                40 hours 
 Allow users to specify political biases of sources rating source left/right. 
-5 hours
+                5 hours
 
 
 
@@ -40,35 +40,33 @@ Allow users to specify political biases of sources rating source left/right.
 Schedule: 
 
 Week 1:
-Getting a feel for the whole android development.
-Basic barebones app (maybe navigation between views?)
-Creation of “pairs” by URLs, comment, title.
-Displaying pairs
-URL and title/comment. Not actually displaying the article.
+  - Getting a feel for the whole android development.
+  - Basic barebones app (maybe navigation between views?)
+  - Creation of “pairs” by URLs, comment, title.
+  - Displaying pairs
+  - URL and title/comment. Not actually displaying the article.
 
 Week 2:
-Style refined based on user input
-Displaying pair list
-Navigation complete
-Pairs can be displayed
-Pairs can be rated
-Search by pair title
+  - Style refined based on user input
+  - Displaying pair list
+  - Navigation complete
+  - Pairs can be displayed
+  - Pairs can be rated
+  - Search by pair title
 
 Week 3:
-Advanced search of pairs.
-Style further modified to fit client’s expectation
-Display of source list
-Rating Of Sources
+  - Advanced search of pairs.
+  - Style further modified to fit client’s expectation
+  - Display of source list
+  - Rating Of Sources
 
 Week 4:
-Cleanup of negatively rated pairs 
-User stats recorded and formatted 
+  - Cleanup of negatively rated pairs 
+  - User stats recorded and formatted 
 
 Week 5:
-Pairs shareable by email/text 
+  - Pairs shareable by email/text 
 
 Week 6:
-Bugfixes.
-Final clean up of style and design
-
-
+  - Bugfixes.
+  - Final clean up of style and design
