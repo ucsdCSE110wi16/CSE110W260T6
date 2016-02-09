@@ -42,19 +42,19 @@ As a user, i would like to be able to rate a specific source as more left/right 
 Schedule: 
 
 Week 1:
-  - Getting a feel for the whole android development.
-  - Basic barebones app (maybe navigation between views?)
-  - Creation of “pairs” by URLs, comment, title.
-  - Displaying pairs
-  - URL and title/comment. Not actually displaying the article.
+  - Getting a feel for the whole android development.             -- Done
+  - Basic barebones app (maybe navigation between views?)         -- Done
+  - Creation of “pairs” by URLs, comment, title.                  -- Done
+  - Displaying pairs                                              -- Done
+  - URL and title/comment. Not actually displaying the article.   -- Done
 
 Week 2:
-  - Style refined based on user input
-  - Displaying pair list
-  - Navigation complete
-  - Pairs can be displayed
-  - Pairs can be rated
-  - Search by pair title
+  - Style refined based on user input                             -- Delayed 
+  - Displaying pair list                                          -- Done
+  - Navigation complete                                           -- Delayed
+  - Pairs can be displayed                                        -- In progress
+  - Pairs can be rated                                            -- Delayed
+  - Search by pair title                                          -- Delayed
 
 Week 3:
   - Advanced search of pairs.
