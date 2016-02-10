@@ -1,29 +1,31 @@
 SideBySide:
 
 User Stories:
-Allow the creation of pairs (from two URLS) and a title/comment + category (possibly source names too.) 
+As a user, i would like to create pairs of articles with two URLs targetting said articles and add a title and comment 
+so that i may share the pair with other users of the app.
                 30 hours
-Record user’s stats on articles’ read based on bias, their prefered topic, and possibly more.     
+As a client, i would like the have the users stats (articles read, preferred topic...) recorded so as to have access to a statistic
+page for each user.
                 10 hours
-The ability to upvote (like) or downvote (dislike) an article pair. 
+As a user, i would like to have the ability to upvote or downvote a pair so as to reflect its usefulness and pertinence.
                 5 hours
-The ability to search for article pairs by source, name or bias. 
+As a user, i would like to be able to search for articles, so as to ease my browsing of pairs.
                 10 hours
-The ability to sort/filter article pairs based on their source (or bias) and/or name.
+As a user, i would like to be able to sort articles (by source, bias and/or name) to ease my browing of pairs.
                 20 hours
-Viewing Pairs.
+As a user, i would like to view the article pairs directly on the app, to easily read interesting news.
                 5 hours
-Viewing Pair list
+As a user, i would like to view a list of all pairs to be able to choose which (if any) i desire to read.
                 10 hours
-Viewing Source list
+As a user, i would like to be able to view the list of sources, to be able to choose from which source i read my articles.
                 10 hours
-Viewing stats
+As a user, i would like to view my stats so as to now which type of articles/bias i tend to prefer
                 10 hours 
-The ability to share pairs with peers via email or text message. 
+As a user, i would like to share pairs by email or text so my friends may read this awesome pair i just found.
                 30 hours
-Sending user stats. 
+As a client, i would like to get a log of all user stats so as to track usage.
                 40 hours 
-Allow users to specify political biases of sources rating source left/right. 
+As a user, i would like to be able to rate a specific source as more left/right oriented to sort through sources.
                 5 hours
 
 
@@ -40,19 +42,19 @@ Allow users to specify political biases of sources rating source left/right.
 Schedule: 
 
 Week 1:
-  - Getting a feel for the whole android development.
-  - Basic barebones app (maybe navigation between views?)
-  - Creation of “pairs” by URLs, comment, title.
-  - Displaying pairs
-  - URL and title/comment. Not actually displaying the article.
+  - Getting a feel for the whole android development.             -- Done
+  - Basic barebones app (maybe navigation between views?)         -- Done
+  - Creation of “pairs” by URLs, comment, title.                  -- Done
+  - Displaying pairs                                              -- Done
+  - URL and title/comment. Not actually displaying the article.   -- Done
 
 Week 2:
-  - Style refined based on user input
-  - Displaying pair list
-  - Navigation complete
-  - Pairs can be displayed
-  - Pairs can be rated
-  - Search by pair title
+  - Style refined based on user input                             -- Delayed 
+  - Displaying pair list                                          -- Done
+  - Navigation complete                                           -- Delayed
+  - Pairs can be displayed                                        -- In progress
+  - Pairs can be rated                                            -- Delayed
+  - Search by pair title                                          -- Delayed
 
 Week 3:
   - Advanced search of pairs.
@@ -70,3 +72,31 @@ Week 5:
 Week 6:
   - Bugfixes.
   - Final clean up of style and design
+  
+  
+  
+  
+  Outdated user stories (wrong format) :
+  //Allow the creation of pairs (from two URLS) and a title/comment + category (possibly source names too.) 
+  
+  // Record user’s stats on articles’ read based on bias, their prefered topic, and possibly more.     
+  
+  // The ability to upvote (like) or downvote (dislike) an article pair. 
+  
+  // The ability to search for article pairs by source, name or bias. 
+  
+  // The ability to sort/filter article pairs based on their source (or bias) and/or name.
+  
+  // Viewing Pairs.
+  
+  // Viewing Pair list
+  
+  // Viewing Source list
+  
+  // Viewing stats
+  
+  // The ability to share pairs with peers via email or text message. 
+  
+  // Sending user stats. 
+  
+  // Allow users to specify political biases of sources rating source left/right. 
