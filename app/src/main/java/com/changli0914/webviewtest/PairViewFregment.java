@@ -1,7 +1,7 @@
 package com.changli0914.webviewtest;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,23 +10,21 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 /**
- * Created by Administrator on 2016/2/2 0002.
+ * Fragment of PairView. Only Contains a WebView widget.
+ * Created by Chang Li on 2016/2/2 0002.
  */
-public class SlideFregment extends Fragment {
+public class PairViewFregment extends Fragment {
 
-    private String url = "http://www.google.com/";
+    private News news;
 
-    public void setURL(String url) {
-        this.url = url;
+    public void setNews(News news) {
+        this.news = news;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        ViewGroup rootView = (ViewGroup) inflater.inflate(
-//                R.layout.fregment_slide, container, false
-//        );
 
-        View v = inflater.inflate(R.layout.fregment_slide, container, false);;
+        View v = inflater.inflate(R.layout.fregment_pairview, container, false);
         WebView myWebView = (WebView)v.findViewById(R.id.webView);
 
         WebSettings webSettings = myWebView.getSettings();
@@ -40,7 +38,7 @@ public class SlideFregment extends Fragment {
             }
         });
 
-        myWebView.loadUrl(url);
+        myWebView.loadUrl(news.url);
 
         return myWebView;
     }

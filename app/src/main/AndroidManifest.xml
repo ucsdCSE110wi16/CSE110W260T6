@@ -16,13 +16,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NewsActivity">
+        <activity android:name=".PairViewActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".SlideActivity">
+        <activity android:name=".AddPairActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

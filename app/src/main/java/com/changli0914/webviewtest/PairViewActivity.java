@@ -1,19 +1,25 @@
 package com.changli0914.webviewtest;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 /**
- * Created by Administrator on 2016/2/2 0002.
+ * Activity to show Pairs, The FragmentActivity is only a Container.
+ *
+ *              WHAT TO DO NEXT:
+ *                      Add a Bar to Show the title
+ *                      Show the bias
+ *                      Permit the users to rate the news/pair
+ *
+ * Created by Chang Li on 2016/2/2 0002.
  */
-public class SlideActivity extends FragmentActivity {
+public class PairViewActivity extends FragmentActivity {
 
     private static final int NUM_PAGES = 2;
 
@@ -21,10 +27,16 @@ public class SlideActivity extends FragmentActivity {
 
     private PagerAdapter mPagerAdapter;
 
+    private Pair pair;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_slide);
+        setContentView(R.layout.activity_pairview);
+
+        Intent intent = this.getIntent();
+
+        this.pair = (Pair) intent.getSerializableExtra("pair");
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -47,12 +59,11 @@ public class SlideActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            SlideFregment fregment = new SlideFregment();
+            PairViewFregment fregment = new PairViewFregment();
             if (position == 0) {
-                fregment.setURL("http://www.foxnews.com/tech/2016/02/02/" +
-                        "yahoo-to-cut-1700-workers-as-ceo-tries-to-save-her-own-job.html");
+                fregment.setNews(pair.news1);
             } else {
-                fregment.setURL("http://www.bbc.com/news/business-35479175");
+                fregment.setNews(pair.news2);
             }
             return fregment;
         }

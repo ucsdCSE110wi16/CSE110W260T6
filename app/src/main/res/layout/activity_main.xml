@@ -12,5 +12,18 @@
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:divider="#FFCC00"
+        android:dividerHeight="2dp"
         android:id="@+id/listView" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Pair"
+        android:id="@+id/button_add"
+        android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@android:drawable/ic_input_add"/>
+
 </RelativeLayout>
