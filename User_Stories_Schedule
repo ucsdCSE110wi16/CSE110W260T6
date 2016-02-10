@@ -49,18 +49,18 @@ Week 1:
   - URL and title/comment. Not actually displaying the article.   -- Done
 
 Week 2:
-  - Style refined based on user input                             -- Delayed 
+  - Style refined based on user input                             -- Done
   - Displaying pair list                                          -- Done
-  - Navigation complete                                           -- Delayed
-  - Pairs can be displayed                                        -- In progress
+  - Navigation complete                                           -- Done
+  - Pairs can be displayed                                        -- Done
   - Pairs can be rated                                            -- Delayed
   - Search by pair title                                          -- Delayed
 
 Week 3:
-  - Advanced search of pairs.
-  - Style further modified to fit client’s expectation
-  - Display of source list
-  - Rating Of Sources
+  - Advanced search of pairs.                                     -- ToDo
+  - Style further modified to fit client’s expectation            -- ?
+  - Display of source list                                        -- ToDo
+  - Rating Of Sources                                             -- ToDo
 
 Week 4:
   - Cleanup of negatively rated pairs 
