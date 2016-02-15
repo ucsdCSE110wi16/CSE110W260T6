@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Core Class to stroe information related to a Pair
+ * Core Class to store information related to a Pair
  * Created by Chang Li on 2016/2/9 0009.
  */
 
