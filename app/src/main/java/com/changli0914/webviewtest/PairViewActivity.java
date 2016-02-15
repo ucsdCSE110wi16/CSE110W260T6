@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 /**
@@ -30,6 +31,8 @@ public class PairViewActivity extends FragmentActivity {
 
     private Pair pair;
 
+    private ProgressBar progressBar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +43,10 @@ public class PairViewActivity extends FragmentActivity {
         this.pair = (Pair) intent.getSerializableExtra("pair");
 
         TextView myTextView = (TextView) findViewById(R.id.title_text);
-
         myTextView.setText(pair.title);
+
+        progressBar = (ProgressBar) findViewById(R.id.pb);
+        progressBar.setMax(100);
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -65,6 +70,7 @@ public class PairViewActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             PairViewFregment fregment = new PairViewFregment();
+            fregment.setPb(progressBar);
             if (position == 0) {
                 fregment.setNews(pair.news1);
             } else {
