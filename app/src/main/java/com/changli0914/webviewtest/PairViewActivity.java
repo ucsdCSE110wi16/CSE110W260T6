@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.TextView;
 
 /**
  * Activity to show Pairs, The FragmentActivity is only a Container.
@@ -37,6 +38,10 @@ public class PairViewActivity extends FragmentActivity {
         Intent intent = this.getIntent();
 
         this.pair = (Pair) intent.getSerializableExtra("pair");
+
+        TextView myTextView = (TextView) findViewById(R.id.title_text);
+
+        myTextView.setText(pair.title);
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
