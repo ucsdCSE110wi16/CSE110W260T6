@@ -13,16 +13,9 @@
         android:textSize="15sp"
         android:background="#262835"
         android:textColor="#cbcbcb"
+        android:gravity="center"
+        android:text="Pair Topic: "
         android:id="@+id/title_text" />
-
-    <ProgressBar
-        android:id="@+id/pb"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="8dip"
-        android:indeterminateOnly="false"
-        android:max="100" >
-    </ProgressBar>
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"

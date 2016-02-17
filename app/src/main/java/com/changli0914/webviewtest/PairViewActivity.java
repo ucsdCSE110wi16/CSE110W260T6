@@ -8,14 +8,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Activity to show Pairs, The FragmentActivity is only a Container.
  *
  *              WHAT TO DO NEXT:
- *                      Add a Bar to Show the title
+ *                      Add a Bar to Show the title (DONE Deb. 17)
  *                      Show the bias
  *                      Permit the users to rate the news/pair
  *
@@ -31,30 +33,37 @@ public class PairViewActivity extends FragmentActivity {
 
     private Pair pair;
 
-    private ProgressBar progressBar;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pairview);
 
+        /* Receive Pair Info from the MainActivity */
         Intent intent = this.getIntent();
-
         this.pair = (Pair) intent.getSerializableExtra("pair");
 
+        /* Set the Pair Title */
         TextView myTextView = (TextView) findViewById(R.id.title_text);
-        myTextView.setText(pair.title);
+        myTextView.append(pair.title);
 
-        progressBar = (ProgressBar) findViewById(R.id.pb);
-        progressBar.setMax(100);
+        /* Construct Fragments here */
+        List<Fragment> fragments = new ArrayList<>();
+        PairViewFragment newsFragment1 = new PairViewFragment();
+        newsFragment1.setNews(pair.news1);
+        fragments.add(newsFragment1);
+        PairViewFragment newsFragment2 = new PairViewFragment();
+        newsFragment2.setNews(pair.news2);
+        fragments.add(newsFragment2);
 
+        /* Init ViewPager */
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), fragments);
         mPager.setAdapter(mPagerAdapter);
     }
 
     @Override
     public void onBackPressed() {
+        /* Change Fragment When Slide */
         if (mPager.getCurrentItem() == 0) {
             super.onBackPressed();
         } else {
@@ -62,26 +71,26 @@ public class PairViewActivity extends FragmentActivity {
         }
     }
 
+    /* Fragment Adapter for the ViewPager */
     public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+
+        /* Store Fragments */
+        private List<Fragment> fragmentList;
+
+        /* Constructor */
+        public ScreenSlidePagerAdapter(FragmentManager fm, List<Fragment> fragments) {
             super(fm);
+            this.fragmentList = fragments;
         }
 
         @Override
         public Fragment getItem(int position) {
-            PairViewFregment fregment = new PairViewFregment();
-            fregment.setPb(progressBar);
-            if (position == 0) {
-                fregment.setNews(pair.news1);
-            } else {
-                fregment.setNews(pair.news2);
-            }
-            return fregment;
+            return fragmentList.get(position);
         }
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return fragmentList.size();
         }
     }
 }
