@@ -28,6 +28,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".RatingActivity"
+            android:theme="@style/AppTheme.RatingActivityStyle">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

@@ -45,6 +45,9 @@ public class PairViewFragment extends Fragment {
         myWebView.setWebChromeClient(new WebViewClient());
         myWebView.loadUrl(news.url);
 
+        /* Init Bias Rating Bar (A Seek Bar) */
+
+
         return v;
     }
 

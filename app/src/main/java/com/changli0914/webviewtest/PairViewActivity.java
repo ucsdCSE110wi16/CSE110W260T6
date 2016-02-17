@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -59,6 +61,15 @@ public class PairViewActivity extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), fragments);
         mPager.setAdapter(mPagerAdapter);
+
+        /* Setting up the Rating Pop Up Button */
+        Button ratingButton = (Button) findViewById(R.id.rating_button);
+        ratingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PairViewActivity.this, RatingActivity.class));
+            }
+        });
     }
 
     @Override
