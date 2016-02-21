@@ -3,11 +3,11 @@ package com.changli0914.webviewtest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,7 +25,7 @@ import java.util.List;
  *
  * Created by Chang Li on 2016/2/2 0002.
  */
-public class PairViewActivity extends FragmentActivity {
+public class PairViewActivity extends AppCompatActivity {
 
     private static final int NUM_PAGES = 2;
 
