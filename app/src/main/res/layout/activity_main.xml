@@ -22,8 +22,8 @@
         android:text="Add Pair"
         android:id="@+id/button_add"
         android:layout_gravity="bottom|end"
+        android:src="@android:drawable/ic_input_add"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:src="@android:drawable/ic_input_add"/>
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
