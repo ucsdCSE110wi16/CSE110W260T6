@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".PairViewActivity">
+    <item
+        android:title="@string/rating_button"
+        android:id="@+id/pairview_rate"
+        android:orderInCategory="100"
+        android:onClick="onRateButtonClick"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="Upvote"
+        android:id="@+id/pairview_upvote"
+        android:icon="@drawable/ic_keyboard_arrow_up_white_24dp"
+        android:orderInCategory="1"
+        app:showAsAction="never"
+        />
+    <item
+        android:title="Downvote"
+        android:id="@+id/pairview_downvote"
+        android:icon="@drawable/ic_keyboard_arrow_down_white_24dp"
+        android:orderInCategory="2"
+        app:showAsAction="never"
+        />
+
+</menu>
