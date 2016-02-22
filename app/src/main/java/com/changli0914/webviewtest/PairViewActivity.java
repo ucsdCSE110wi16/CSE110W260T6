@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -70,6 +73,22 @@ public class PairViewActivity extends AppCompatActivity {
                 startActivity(new Intent(PairViewActivity.this, RatingActivity.class));
             }
         });
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        /*actionBar.setTitle(pair.title); // For some reason getSupportActionBar() keeps returning null. Will try to resolve */
+    }
+
+    public boolean onRateButtonClick(MenuItem menu) {
+        startActivity(new Intent(PairViewActivity.this, RatingActivity.class));
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        /* Inflate the menu; this adds items to the action bar if it is present */
+        MenuInflater menuInflater = new MenuInflater(this);
+        menuInflater.inflate(R.menu.menu_activity_pairview, menu);
+        return true;
     }
 
     @Override
