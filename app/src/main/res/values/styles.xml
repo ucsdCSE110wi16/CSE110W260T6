@@ -6,11 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowNoTitle">false</item>
     </style>
 
     <style name="AppTheme.RatingActivityStyle" >
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowNoTitle">false</item>
     </style>
 
 </resources>

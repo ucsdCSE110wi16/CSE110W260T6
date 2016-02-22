@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">WebViewTest</string>
+    <string name="app_name">SideBySide</string>
+    <string name="rating_button">Rate</string>
 </resources>
