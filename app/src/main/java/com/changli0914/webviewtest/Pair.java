@@ -2,6 +2,7 @@ package com.changli0914.webviewtest;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Core Class to store information related to a Pair
@@ -19,6 +20,7 @@ public class Pair implements Serializable{
     protected String title;
     protected String comment;
     protected int image;
+    protected int likeCount;
 
     public Pair(News news1, News news2, String title, String comment, int image) {
         this.news1 = news1;
@@ -31,5 +33,6 @@ public class Pair implements Serializable{
         this.pairID = "123";
         this.ownerID = "456";
         this.createdDate = new Date();
+        this.likeCount = (new Random()).nextInt(10000);
     }
 }
