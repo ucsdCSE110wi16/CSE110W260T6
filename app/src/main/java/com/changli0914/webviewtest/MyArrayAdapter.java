@@ -1,6 +1,8 @@
 package com.changli0914.webviewtest;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +30,21 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.pairlist_layout, parent, false);
+        final View rowView = inflater.inflate(R.layout.pairlist_layout, parent, false);
         final Pair pair = pairList.get(position);
+        final View.OnClickListener pairJumpHandler = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                /** Transmit the Target Pair to the PairViewActivity */
+                intent.putExtra("pair", pair);
+                intent.setClass(getContext(), PairViewActivity.class);
+                /** Start The PairViewActivity */
+                getContext().startActivity(intent);
+            }
+        };
 
         /** Set the view for one item */
         // Title
@@ -62,14 +75,18 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
         // Subtitle 1
         TextView subtitle1 = (TextView) rowView.findViewById(R.id.item_subtitle1);
         subtitle1.setText(pair.news1.title);
+        subtitle1.setOnClickListener(pairJumpHandler);
         // Subtitle 2
         TextView subtitle2 = (TextView) rowView.findViewById(R.id.item_subtitle2);
         subtitle2.setText(pair.news2.title);
+        subtitle2.setOnClickListener(pairJumpHandler);
         // Image
         ImageView image = (ImageView) rowView.findViewById(R.id.item_image);
         image.setImageResource(pair.image);
+        image.setOnClickListener(pairJumpHandler);
         // News Source Image 1
         ImageView sourceImage1 = (ImageView) rowView.findViewById(R.id.item_source_image1);
+        sourceImage1.setOnClickListener(pairJumpHandler);
         switch (pair.news1.source) {
             case ABC:
                 sourceImage1.setImageResource(R.drawable.abcnews);
@@ -89,6 +106,7 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
         }
         // News Source Image 2
         ImageView sourceImage2 = (ImageView) rowView.findViewById(R.id.item_source_image2);
+        sourceImage2.setOnClickListener(pairJumpHandler);
         switch (pair.news2.source) {
             case ABC:
                 sourceImage2.setImageResource(R.drawable.abcnews);
