@@ -1,5 +1,7 @@
 package com.changli0914.webviewtest;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
@@ -26,7 +28,16 @@ public class PairManager implements Serializable {
     private List<Pair> list = new LinkedList<>();
 
     //(String url, String title, NewsSource source, double bias, Date date, NewsCategory category, NewsRegion region)
+
+    // Here, replace with fetch from DB. Populate news.
     public List<Pair> getPairs() {
+        List<Pair> pairs;
+
+        ArticlePairs test = new ArticlePairs();
+        test.retrieveNEntries(10);
+        pairs = test.getPairs();
+        //Log.d("HEEEEERE", "after getPairs " + pairs.size());
+
 
         News news1 = new News("http://www.foxnews.com/politics/2016/02/09/" +
                 "trump-on-possible-bloomberg-run-would-love-to-see-it.html", "Trump On Possible Bloomberg",
@@ -41,18 +52,24 @@ public class PairManager implements Serializable {
                 "r-papa-trump-211443177.html", "Ivanka With Her Bump Stumps For Papa Trump",
                 NewsSource.BBC, 5.0, new Date(), NewsCategory.Entertainment, NewsRegion.World);
 
-        list.add(new Pair(news1, news2, "Trump and Obama", "1+2", R.drawable.obama_1));
-        list.add(new Pair(news1, news3, "Trump and Hillarys", "1+3", R.drawable.hillary_1));
-        list.add(new Pair(news1, news4, "Trump and Trump", "1+4", R.drawable.trump_1));
-        list.add(new Pair(news2, news3, "Obama and Hillarys", "2+3", R.drawable.obama_2));
-        list.add(new Pair(news2, news4, "Obama and Trump", "2+4", R.drawable.obama_3));
-        list.add(new Pair(news3, news4, "Hillary and Obama", "3+4", R.drawable.hillary_2));
-        list.add(new Pair(news1, news2, "Trump and Obama", "1+2", R.drawable.trump_3));
-        list.add(new Pair(news1, news3, "Trump and Hillarys", "1+3", R.drawable.trump_4));
-        list.add(new Pair(news1, news4, "Trump and Trump", "1+4", R.drawable.trump_2));
-        list.add(new Pair(news2, news3, "Obama and Hillarys", "2+3", R.drawable.hillary_1));
-        list.add(new Pair(news2, news4, "Obama and Trump", "2+4", R.drawable.obama_1));
-        list.add(new Pair(news3, news4, "Hillary and Obama", "3+4", R.drawable.hillary_2));
+        if (pairs != null) {
+            Log.d("HEEEEERE", "Added and set");
+            for (int i = 0; i < pairs.size(); ++i) {
+                list.add(pairs.get(i));
+            }
+        }
+       /* list.add(new Pair(news1, news2, "Trump and Obama", "1+2", R.drawable.obama_1, 1));
+        list.add(new Pair(news1, news3, "Trump and Hillarys", "1+3", R.drawable.hillary_1, 1));
+        list.add(new Pair(news1, news4, "Trump and Trump", "1+4", R.drawable.trump_1, 1));
+        list.add(new Pair(news2, news3, "Obama and Hillarys", "2+3", R.drawable.obama_2, 1));
+        list.add(new Pair(news2, news4, "Obama and Trump", "2+4", R.drawable.obama_3, 1));
+        list.add(new Pair(news3, news4, "Hillary and Obama", "3+4", R.drawable.hillary_2, 1));
+        list.add(new Pair(news1, news2, "Trump and Obama", "1+2", R.drawable.trump_3, 1));
+        list.add(new Pair(news1, news3, "Trump and Hillarys", "1+3", R.drawable.trump_4, 1));
+        list.add(new Pair(news1, news4, "Trump and Trump", "1+4", R.drawable.trump_2, 1));
+        list.add(new Pair(news2, news3, "Obama and Hillarys", "2+3", R.drawable.hillary_1, 1));
+        list.add(new Pair(news2, news4, "Obama and Trump", "2+4", R.drawable.obama_1, 1));
+        list.add(new Pair(news3, news4, "Hillary and Obama", "3+4", R.drawable.hillary_2, 1));*/
 
         return list;
     }
