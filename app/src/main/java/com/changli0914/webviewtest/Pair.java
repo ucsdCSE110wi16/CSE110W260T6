@@ -1,11 +1,18 @@
 package com.changli0914.webviewtest;
 
+import android.util.Log;
+
+import com.parse.ParseObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Random;
 
 /**
- * Core Class to store information related to a Pair
+ * Core Class to stroe information related to a Pair
  * Created by Chang Li on 2016/2/9 0009.
  */
 
@@ -17,22 +24,46 @@ public class Pair implements Serializable{
 
     protected News news1;
     protected News news2;
+    protected NewsRegion region;
     protected String title;
     protected String comment;
-    protected int image;
-    protected int likeCount;
+    protected int image; // User input.
+    protected int rating; // User input.
+    protected Double bias1;
+    protected Double bias2;
+    protected NewsCategory category;
 
-    public Pair(News news1, News news2, String title, String comment, int image) {
+    public Pair(News news1, News news2, String title, String comment, int image, int rating) {
         this.news1 = news1;
         this.news2 = news2;
         this.title = title;
         this.comment = comment;
         this.image = image;
+        this.bias1 = news1.bias;
+        this.bias2 = news2.bias;
 
         /** These Field Should be Handled Properly in the future */
+        // Still didn't really figure out what to do with these fields. Will look in to it eventually.
+        this.category = NewsCategory.Entertainment;
+        this.region = NewsRegion.US;
         this.pairID = "123";
         this.ownerID = "456";
         this.createdDate = new Date();
-        this.likeCount = (new Random()).nextInt(10000);
+    }
+
+    public void put() {
+        // Create an ArticlePair ParseObject that will serve to create an entry in the database.
+        ParseObject toPut = new ParseObject("ArticlePair");
+        // Retrieve the serialized object.
+        byte[] res = Serializer.serialize(this);
+
+        try {
+            // Put the serialized object in the database under the "Object" field
+            toPut.put("Object", res);
+            toPut.save();
+        }
+        catch (Exception e) {
+            Log.e("ERROR : ", e.getMessage(), e);
+        }
     }
 }
