@@ -28,7 +28,7 @@ public class Pair implements Serializable{
     protected String title;
     protected String comment;
     protected int image; // User input.
-    protected int rating; // User input.
+    protected int likeCount; // User input.
     protected Double bias1;
     protected Double bias2;
     protected NewsCategory category;
@@ -41,6 +41,7 @@ public class Pair implements Serializable{
         this.image = image;
         this.bias1 = news1.bias;
         this.bias2 = news2.bias;
+        this.likeCount = rating;
 
         /** These Field Should be Handled Properly in the future */
         // Still didn't really figure out what to do with these fields. Will look in to it eventually.
@@ -53,13 +54,24 @@ public class Pair implements Serializable{
 
     public void put() {
         // Create an ArticlePair ParseObject that will serve to create an entry in the database.
-        ParseObject toPut = new ParseObject("ArticlePair");
+        ParseObject toPut = new ParseObject("FieldPair");
         // Retrieve the serialized object.
         byte[] res = Serializer.serialize(this);
 
         try {
             // Put the serialized object in the database under the "Object" field
-            toPut.put("Object", res);
+            toPut.put("Title", this.title);
+            toPut.put("Comment", this.comment);
+            toPut.put("Image", this.image);
+            toPut.put("Bias1", this.news1.bias);
+            toPut.put("Bias2", this.news2.bias);
+            toPut.put("Rating", this.likeCount);
+
+            toPut.put("Category", 0);
+            toPut.put("Region", 0);
+
+            toPut.put("News1", Serializer.serialize(this.news1));
+            toPut.put("News2", Serializer.serialize(this.news2));
             toPut.save();
         }
         catch (Exception e) {

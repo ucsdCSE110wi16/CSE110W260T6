@@ -39,20 +39,26 @@ public class ArticlePairs {
         Pair pair;
         String title;
         String comment;
-        String url1;
-        String url2;
+        Double bias1;
+        Double bias2;
+        News news1;
+        News news2;
+
 
 
 
 
         // How i have to put it back.
-        /*
+
         title = obj.getString("Title");
         comment = obj.getString("Comment");
-        url1 = obj.getString("Url1");
-        url2 = obj.getString("Url2");
-        pair = new Pair(new News(url1, "A title"), new News(url2, "A title"), title, comment, 1, 1);
-        */
+        bias1 = obj.getDouble("Bias1");
+        bias2 = obj.getDouble("Bias2");
+        news1 = (News)Serializer.deserialize(obj.getString("News1").getBytes());
+        news2 = (News)Serializer.deserialize(obj.getString("News2").getBytes());
+
+        pair = new Pair(news1, news2, title, comment, 1, 1);
+
 
         // Just to see if the this._pairs list has been set.
         if (_pairs == null) {
@@ -70,7 +76,7 @@ public class ArticlePairs {
 
     public void retrieveNEntries(final int n) {
         List<ParseObject> pairList;
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("ArticlePair").setLimit(n); // Query for all entries in "ArticlePair" table.
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("FieldPair").setLimit(n); // Query for all entries in "ArticlePair" table.
 
         try {
             pairList = query.find(); // List of parseOBJECTS retrieved from database.
