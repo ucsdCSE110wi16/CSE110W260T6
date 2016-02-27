@@ -74,7 +74,7 @@ public class PairViewActivity extends AppCompatActivity {
             }
         });
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        android.support.v7.app.ActionBar actionBar = super.getSupportActionBar();
         /*actionBar.setTitle(pair.title); // For some reason getSupportActionBar() keeps returning null. Will try to resolve */
     }
 
