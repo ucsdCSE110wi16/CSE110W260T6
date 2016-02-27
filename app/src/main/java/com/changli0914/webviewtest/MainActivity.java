@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -55,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        Button b = (Button)findViewById(R.id.refresh_button);
+
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pairList=pairManager.getPairs();
+            }
+        });
         /** Find the Add Button */
         ImageButton addButton = (ImageButton) findViewById(R.id.button_add);
 
