@@ -2,6 +2,10 @@ package com.changli0914.webviewtest;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,26 +19,47 @@ import java.util.Date;
  *
  * Created by Chang Li on 2016/2/9 0009.
  */
-public class AddPairActivity extends Activity {
+public class AddPairActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpair);
 
-        final PairManager pairManager = (PairManager) this.getIntent().getSerializableExtra("pairList");
+
+        final EditText title = ((EditText) findViewById(R.id.add_pair_title));
+        final EditText comment = ((EditText) findViewById(R.id.add_pair_comment));
+        final EditText url1_field = (EditText) findViewById(R.id.add_pair_url1);
+        final EditText url2_field = (EditText) findViewById(R.id.add_pair_url2);
+
+
+        // final PairManager pairManager = (PairManager) this.getIntent().getSerializableExtra("pairList");
 
         Button submitButton = (Button) findViewById(R.id.button_submit);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                News news1 = new News(((EditText)v.findViewById(R.id.add_pair_url1)).getText().toString(),
-                        "News 1", NewsSource.Yahoo, 1.0, new Date(), NewsCategory.Politics, NewsRegion.US);
-                News news2 = new News(((EditText)v.findViewById(R.id.add_pair_url2)).getText().toString(),
-                        "News 2", NewsSource.ABC, 2.0, new Date(), NewsCategory.Science, NewsRegion.World);
-                pairManager.addNewPair(new Pair(news1, news2, "Trump and Obama", "1+2", R.drawable.google));
+
+                String title = "test";
+                String comment = "test too";
+                Pair created;
+                String url1;
+                String url2;
+                //  title =  ((EditText)v.findViewById(R.id.add_pair_title)).getText().toString();
+                // comment = ((EditText)v.findViewById(R.id.add_pair_comment)).getText().toString();
+                url1 = url1_field.getText().toString();
+                url2 = url2_field.getText().toString();
+
+                News news1 = new News(url1,"News 1", NewsSource.Yahoo, 1.0, new Date(), NewsCategory.Politics, NewsRegion.US);
+                News news2 = new News(url2,"News 2", NewsSource.ABC, 2.0, new Date(), NewsCategory.Science, NewsRegion.World);
+                created = new Pair(news1, news2, title, comment, R.drawable.google, 1);
+                //pairManager.addNewPair(created);
+                Log.d("Before put", "Putput");
+                created.put();
             }
         });
     }
+
+
 
 }
