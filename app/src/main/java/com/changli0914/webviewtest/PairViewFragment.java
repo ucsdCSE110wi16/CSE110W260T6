@@ -51,6 +51,17 @@ public class PairViewFragment extends Fragment {
         return v;
     }
 
+    /* Viewer must finish reading article before deciding on bias */
+    /*@Override
+    public void onScroll(int l, int t) {
+        int height = (int) Math.floor(webView.getContentHeight() * webView.getScale());
+        int webViewHeight = webView.getHeight();
+        int cutoff = height - webViewHeight - 10; // Don't be too strict on the cutoff point
+        if (t >= cutoff) {
+            setDisclaimerButtonEnabled(true);
+        }
+    }*/
+
     /* WebChromeClient is needed to use ProgressBar */
     private class WebViewClient extends WebChromeClient {
 

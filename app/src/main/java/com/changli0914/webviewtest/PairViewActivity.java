@@ -74,8 +74,6 @@ public class PairViewActivity extends AppCompatActivity {
             }
         });
 
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        /*actionBar.setTitle(pair.title); // For some reason getSupportActionBar() keeps returning null. Will try to resolve */
     }
 
     public boolean onRateButtonClick(MenuItem menu) {
