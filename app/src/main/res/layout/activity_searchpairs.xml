@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Title"
+        android:id="@+id/title" />
+
+    <!-- Title Input -->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_pair_title"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Category -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Category"
+        android:id="@+id/category" />
+
+    <!-- Category Input -->
+    <Spinner
+        android:layout_width=""
+        android:layout_height=""
+        android:id="@+id/search_pair_category" />
+
+    <!-- Source -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Source"
+        android:id="@+id/source" />
+
+    <!-- Source Input -->
+    <Spinner
+        android:layout_width=""
+        android:layout_height=""
+        android:id="@+id/search_pair_source"/>
+
+    <!-- Region -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Region"
+        android:id="@+id/region" />
+
+    <!-- Region Input -->
+    <Spinner
+        android:layout_width=""
+        android:layout_height=""
+        android:id="@+id/search_pair_region" />
+
+    <!-- Bias -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bias"
+        android:id="@+id/bias" />
+
+    <!-- Bias Input -->
+    <Spinner
+        android:layout_width=""
+        android:layout_height=""
+        android:id="@+id/search_pair_bias" />
+
+    <!-- add Date field here -->
+
+</LinearLayout>
