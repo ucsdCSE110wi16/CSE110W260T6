@@ -26,7 +26,7 @@ public class Serializer {
 
             // Get the bytes of the serialized object
             byte[] ret = output.toByteArray();
-
+            Log.d("ret", ret.toString());
             return (ret);
         } catch(IOException ioe) {
             Log.e("Error : ", " In serialize(Object); (Serializer.java) ", ioe);

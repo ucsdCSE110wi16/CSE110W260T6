@@ -38,7 +38,7 @@ public class Pair implements Serializable{
         this.news2 = news2;
         this.title = title;
         this.comment = comment;
-        this.image = image;
+        this.image = R.drawable.google;
         this.bias1 = news1.bias;
         this.bias2 = news2.bias;
         this.likeCount = rating;
@@ -54,7 +54,7 @@ public class Pair implements Serializable{
 
     public void put() {
         // Create an ArticlePair ParseObject that will serve to create an entry in the database.
-        ParseObject toPut = new ParseObject("FieldPair");
+        ParseObject toPut = new ParseObject("FieldPair3");
         // Retrieve the serialized object.
         byte[] res = Serializer.serialize(this);
 

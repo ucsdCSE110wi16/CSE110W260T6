@@ -3,6 +3,7 @@ package com.changli0914.webviewtest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +83,7 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
         subtitle2.setOnClickListener(pairJumpHandler);
         // Image
         ImageView image = (ImageView) rowView.findViewById(R.id.item_image);
+        Log.d("image", "Image id is " + pair.image);
         image.setImageResource(pair.image);
         image.setOnClickListener(pairJumpHandler);
         // News Source Image 1
