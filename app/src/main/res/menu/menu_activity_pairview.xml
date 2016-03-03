@@ -15,14 +15,14 @@
         android:id="@+id/pairview_upvote"
         android:icon="@drawable/ic_keyboard_arrow_up_white_24dp"
         android:orderInCategory="1"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom"
         />
     <item
         android:title="Downvote"
         android:id="@+id/pairview_downvote"
         android:icon="@drawable/ic_keyboard_arrow_down_white_24dp"
         android:orderInCategory="2"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom"
         />
 
 </menu>
