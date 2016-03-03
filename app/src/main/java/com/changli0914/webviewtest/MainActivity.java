@@ -73,4 +73,46 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        pairList = pairManager.getPairs();
+
+        /** Find the ListView */
+        ListView myListView = (ListView)findViewById(R.id.listView);
+        myListView.setAdapter(new MyArrayAdapter(this, pairList));
+
+        /** Set Click Listener for Each Item */
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                /** Transmit the Target Pair to the PairViewActivity */
+                intent.putExtra("pair", pairList.get(position));
+                intent.setClass(MainActivity.this, PairViewActivity.class);
+                /** Start The PairViewActivity */
+                startActivity(intent);
+            }
+        });
+
+        /** Find the Add Button */
+        ImageButton addButton = (ImageButton) findViewById(R.id.button_add);
+
+        /** Set Click Listener for Add Button */
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                /** Transmit the PairManager to the AddPairActivity */
+                intent.putExtra("pairManager", pairManager);
+                intent.setClass(MainActivity.this, AddPairActivity.class);
+                /** Start New Avtivity */
+                startActivity(intent);
+            }
+        });
+
+        // Get the Camera instance as the activity achieves full user focus
+
+    }
+
 }

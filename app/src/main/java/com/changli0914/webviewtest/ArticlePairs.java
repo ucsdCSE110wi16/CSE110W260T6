@@ -54,8 +54,10 @@ public class ArticlePairs {
         comment = obj.getString("Comment");
         bias1 = obj.getDouble("Bias1");
         bias2 = obj.getDouble("Bias2");
-        news1 = (News)Serializer.deserialize(obj.getString("News1").getBytes());
-        news2 = (News)Serializer.deserialize(obj.getString("News2").getBytes());
+        Log.d("tag", obj.getBytes("News1").toString());
+        Log.d("tag", obj.getBytes("News2").toString());
+        news1 = (News)Serializer.deserialize(obj.getBytes("News1"));
+        news2 = (News)Serializer.deserialize( obj.getBytes("News2"));
 
         pair = new Pair(news1, news2, title, comment, 1, 1);
 
@@ -66,23 +68,25 @@ public class ArticlePairs {
         }
 
         // Debug
-        Log.d("SERIALIZE RES", Serializer.deserialize(obj.getBytes("Object")).toString());
+       // Log.d("SERIALIZE RES", Serializer.deserialize(obj.getBytes("Object")).toString());
 
         // Deserialize ParseObject passed as parameter, and cast it into a Pair object. (It returns a generic Java Object)
-        pair = (Pair)Serializer.deserialize(obj.getBytes("Object"));
+       // pair = (Pair)Serializer.deserialize(obj.getBytes("Object"));
         // Add it to our list of pairs.
+
         _pairs.add(pair);
     }
 
     public void retrieveNEntries(final int n) {
         List<ParseObject> pairList;
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("FieldPair").setLimit(n); // Query for all entries in "ArticlePair" table.
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("FieldPair3").setLimit(n); // Query for all entries in "ArticlePair" table.
+
 
         try {
             pairList = query.find(); // List of parseOBJECTS retrieved from database.
-
+            int size = pairList.size();
             // Iterate over list. (I miss c++ iterators...)
-            for (int i = 0; i < pairList.size(); ++i) {
+            for (int i = 0; i < size; ++i) {
                 Log.d("In LOOP", "Loop : " + i);
                 buildFromParseObject(pairList.get(i)); // Call to the function that will pass it from ParseObject to Pair and append it to the this->_pairs List
                 _retrieved += 1;
@@ -90,7 +94,8 @@ public class ArticlePairs {
             Log.d("EXE_SUCCESS", _retrieved + " Entries have been fetched.");
         }
         catch (Exception e) {
-            Log.e("PARSE_ERROR", e.getMessage());
+            Log.e("PARSE_ERROR (retrieve)", e.getMessage());
+            e.printStackTrace();
         }
 
     }
