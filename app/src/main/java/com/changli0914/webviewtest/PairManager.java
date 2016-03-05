@@ -53,28 +53,6 @@ public class PairManager implements Serializable {
     }
 
     private void fetchPairs() {
-/*
-        query.findInBackground(new FindCallback<Pair>() {
-            @Override
-            public void done(List<Pair> objects, ParseException e) {
-                if (e == null) {
-                    pairList.addAll(objects);
-                    fetchDone = true;
-                } else {
-                    Log.d("Parse Exception", "Failed to fetch pairs in PairManager");
-                }
-            }
-        });
-        while (!fetchDone) {
-            Log.d("Wait", "Waiting............");
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException ip) {
-                // Do nothing
-            }
-        }
-        fetchDone = false;
-        */
         try {
             Task<List<Pair>> q = query.findInBackground();
             q.waitForCompletion();
@@ -82,7 +60,6 @@ public class PairManager implements Serializable {
         } catch (Exception e) {
             // Do nothing
         }
-
     }
 
     public List<Pair> getPairs() {
@@ -97,6 +74,7 @@ public class PairManager implements Serializable {
         Pair pair = Pair.createPair(title, comment, image, imageFile, date, category, region,
                                     url1, title1, source1, bias1, url2, title2, source2, bias2);
         pairList.add(0, pair);
+
         return true;
     }
 }

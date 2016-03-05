@@ -35,7 +35,7 @@ public class AddPairActivity extends Activity {
                                         "News 1", NewsSource.Yahoo, 1.0,
                                         ((EditText)findViewById(R.id.add_pair_url2)).getText().toString(),
                                         "News 2", NewsSource.ABC, 2.0);
-
+                finish();
             }
         });
     }

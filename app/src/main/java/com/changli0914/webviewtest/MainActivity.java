@@ -3,6 +3,9 @@ package com.changli0914.webviewtest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -53,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 /** Transmit the PairManager to the AddPairActivity */
-//                intent.putExtra("pairManager", pairManager);
                 intent.setClass(MainActivity.this, AddPairActivity.class);
                 /** Start New Avtivity */
                 startActivity(intent);
@@ -62,4 +64,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.main_refresh:
+                ListView lv = ((ListView) findViewById(R.id.listView));
+                lv.setAdapter(new MyArrayAdapter(this, pairList));
+                break;
+            case R.id.main_filter:
+                break;
+            case R.id.main_sort:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
