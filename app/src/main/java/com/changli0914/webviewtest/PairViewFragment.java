@@ -17,12 +17,14 @@ import android.widget.TextView;
  */
 public class PairViewFragment extends Fragment {
 
-    private News news;
+    private Pair pair;
+    private int id;
     private ProgressBar progressBar;
 
-    public void setNews(News news) {
-        this.news = news;
+    public void setID(int id) {
+        this.id = id;
     }
+    public void setPair(Pair pair) { this.pair = pair; }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class PairViewFragment extends Fragment {
 
         /* Set News title */
         TextView textView = (TextView)v.findViewById(R.id.title_fragment);
-        textView.setText(news.title);
+        textView.setText(pair.getTitle(id));
 
         /* Init the Progress Bar for the web page loading */
         progressBar = (ProgressBar)v.findViewById(R.id.pb);
@@ -43,7 +45,7 @@ public class PairViewFragment extends Fragment {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         myWebView.setWebChromeClient(new WebViewClient());
-        myWebView.loadUrl(news.url);
+        myWebView.loadUrl(pair.getUrl(id));
 
         /* Init Bias Rating Bar (A Seek Bar) */
 

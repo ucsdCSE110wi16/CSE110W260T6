@@ -4,9 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
+import com.parse.ParseObject;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private PairManager pairManager = new PairManager(); /* Manage all pairs (from DB) */
+    private PairManager pairManager; /* Manage all pairs (from DB) */
     private List<Pair> pairList; /* Current Pairs List to Show */
 
     @Override
@@ -36,24 +37,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /** Init pairList */
+        pairManager = PairManager.getPairManager();
         pairList = pairManager.getPairs();
 
         /** Find the ListView */
         ListView myListView = (ListView)findViewById(R.id.listView);
         myListView.setAdapter(new MyArrayAdapter(this, pairList));
-
-        /** Set Click Listener for Each Item */
-        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                /** Transmit the Target Pair to the PairViewActivity */
-                intent.putExtra("pair", pairList.get(position));
-                intent.setClass(MainActivity.this, PairViewActivity.class);
-                /** Start The PairViewActivity */
-                startActivity(intent);
-            }
-        });
 
         /** Find the Add Button */
         ImageButton addButton = (ImageButton) findViewById(R.id.button_add);
@@ -64,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 /** Transmit the PairManager to the AddPairActivity */
-                intent.putExtra("pairManager", pairManager);
+//                intent.putExtra("pairManager", pairManager);
                 intent.setClass(MainActivity.this, AddPairActivity.class);
                 /** Start New Avtivity */
                 startActivity(intent);

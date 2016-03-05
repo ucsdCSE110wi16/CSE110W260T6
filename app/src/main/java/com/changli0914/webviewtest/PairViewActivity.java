@@ -15,6 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,27 +47,41 @@ public class PairViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pairview);
 
-        /* Receive Pair Info from the MainActivity */
-        Intent intent = this.getIntent();
-        this.pair = (Pair) intent.getSerializableExtra("pair");
-
         /* Set the Pair Title */
-        TextView myTextView = (TextView) findViewById(R.id.title_text);
-        myTextView.append(pair.title);
+        final TextView myTextView = (TextView) findViewById(R.id.title_text);
 
         /* Construct Fragments here */
-        List<Fragment> fragments = new ArrayList<>();
-        PairViewFragment newsFragment1 = new PairViewFragment();
-        newsFragment1.setNews(pair.news1);
+        final List<Fragment> fragments = new ArrayList<>();
+        final PairViewFragment newsFragment1 = new PairViewFragment();
+        newsFragment1.setID(1);
         fragments.add(newsFragment1);
-        PairViewFragment newsFragment2 = new PairViewFragment();
-        newsFragment2.setNews(pair.news2);
+        final PairViewFragment newsFragment2 = new PairViewFragment();
+        newsFragment2.setID(2);
         fragments.add(newsFragment2);
 
         /* Init ViewPager */
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), fragments);
-        mPager.setAdapter(mPagerAdapter);
+
+
+        /* Receive Pair Info from the MainActivity */
+        Intent intent = this.getIntent();
+        String pairID = intent.getStringExtra("pairID");
+        ParseQuery<Pair> query = ParseQuery.getQuery(Pair.class);
+        query.getInBackground(pairID, new GetCallback<Pair>() {
+            @Override
+            public void done(Pair object, ParseException e) {
+                if (e == null) {
+                    pair = object;
+                    myTextView.append(pair.getTitle());
+                    newsFragment1.setPair(pair);
+                    newsFragment2.setPair(pair);
+                    mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), fragments);
+                    mPager.setAdapter(mPagerAdapter);
+                } else {
+                    finish();
+                }
+            }
+        });
 
         /* Setting up the Rating Pop Up Button */
         Button ratingButton = (Button) findViewById(R.id.rating_button);
