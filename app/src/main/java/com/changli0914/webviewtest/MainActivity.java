@@ -12,6 +12,7 @@ import android.widget.ListView;
 
 import com.parse.ParseObject;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         switch (id) {
             case R.id.main_refresh:
                 ListView lv = ((ListView) findViewById(R.id.listView));
+                Collections.shuffle(pairList);
                 lv.setAdapter(new MyArrayAdapter(this, pairList));
                 break;
             case R.id.main_filter:

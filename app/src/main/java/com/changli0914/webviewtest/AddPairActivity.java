@@ -24,12 +24,22 @@ public class AddPairActivity extends Activity {
 
         //final PairManager pairManager = (PairManager) this.getIntent().getSerializableExtra("pairList");
 
+        EditText title = (EditText)findViewById(R.id.add_pair_title);
+        EditText subtitle1 = (EditText)findViewById(R.id.add_pair_subtitle1);
+        EditText subtitle2 = (EditText)findViewById(R.id.add_pair_subtitle2);
+        EditText url1 = (EditText)findViewById(R.id.add_pair_url1);
+        EditText url2 = (EditText)findViewById(R.id.add_pair_url2);
+
         Button submitButton = (Button) findViewById(R.id.button_submit);
+
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                PairManager.getPairManager().addNewPair("New Pair", "Just for test", R.drawable.google, null,
+                PairManager.getPairManager().addNewPair(
+                                        ((EditText)findViewById(R.id.add_pair_title)).getText().toString(),
+                                        "Just for test", R.drawable.google, null,
                                         new Date(), NewsCategory.Politics, NewsRegion.US,
                                         ((EditText)findViewById(R.id.add_pair_url1)).getText().toString(),
                                         "News 1", NewsSource.Yahoo, 1.0,
