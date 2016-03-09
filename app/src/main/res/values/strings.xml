@@ -3,4 +3,30 @@
     <string name="parse_client_key">WzlafD8a29yrsoNvjDovNCYEMexYGiyMbspRGfxb</string>
     <string name="app_name">SideBySide</string>
     <string name="rating_button">Rate</string>
+    <string name="edit_title">Enter a Title</string>
+    <string name="select_category">Select Category</string>
+    <string name="select_region">Select Region</string>
+    <string name="select_bias">Select Bias</string>
+    <string name="select_date">Select Date</string>
+    <string name="search">Search</string>
+    <string name="cancel">Cancel</string>
+    <!-- might not need this up to -->
+    <string-array name="categories">
+        <item>Politics</item>
+        <item>Entertainment</item>
+        <item>Tech</item>
+        <item>Science</item>
+        <item>Health</item>
+        <item>Travel</item>
+        <item>Sports</item>
+        <item>Other</item>
+    </string-array>
+    <!-- this (string-array) -->
+    <integer-array name="biases">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </integer-array>
 </resources>

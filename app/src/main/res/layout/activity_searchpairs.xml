@@ -1,78 +1,109 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- Title -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Title"
-        android:id="@+id/title" />
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PairViewActivity">
 
     <!-- Title Input -->
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_pair_title"
-        android:layout_gravity="center_horizontal" />
+        android:hint="@string/edit_title"/>
 
     <!-- Category -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Category"
-        android:id="@+id/category" />
+        android:text="@string/select_category"
+        />
 
     <!-- Category Input -->
     <Spinner
-        android:layout_width=""
-        android:layout_height=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/search_pair_category" />
 
     <!-- Source -->
-    <TextView
+    <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Source"
-        android:id="@+id/source" />
+        android:id="@+id/source" /> -->
 
     <!-- Source Input -->
-    <Spinner
+    <!-- <Spinner
         android:layout_width=""
         android:layout_height=""
-        android:id="@+id/search_pair_source"/>
+        android:id="@+id/search_pair_source"/> -->
 
     <!-- Region -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Region"
-        android:id="@+id/region" />
+        android:text="@string/select_region"
+        android:id="@+id/region"
+        />
 
     <!-- Region Input -->
     <Spinner
-        android:layout_width=""
-        android:layout_height=""
-        android:id="@+id/search_pair_region" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_pair_region"
+        />
 
     <!-- Bias -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Bias"
-        android:id="@+id/bias" />
+        android:text="@string/select_bias"
+        android:id="@+id/bias"
+        />
 
     <!-- Bias Input -->
     <Spinner
-        android:layout_width=""
-        android:layout_height=""
-        android:id="@+id/search_pair_bias" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_pair_bias"
+        />
 
     <!-- add Date field here -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/select_date"
+        />
+
+    <!-- Date Input -->
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <!-- Submit Search Button -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:id="@+id/search_submit"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Cancel Search Button -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:id="@+id/search_cancel"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

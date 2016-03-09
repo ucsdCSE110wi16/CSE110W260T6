@@ -10,5 +10,6 @@ public enum NewsSource {
     Yahoo,
     CNN,
     ABC,
-    Other
+    Other,
+    NotSpecified
 }

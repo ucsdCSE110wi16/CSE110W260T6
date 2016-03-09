@@ -13,6 +13,8 @@ import java.util.List;
  *                          setFilter(): Set a filter to only load related pairs
  *                          cleanFilter(); Remove existed Filter
  *                          addNewPair(): Insert a new created pair into the DB
+ *                          searchPairs(): Find and return from DB pairs that match user's
+ *                                         search criteria
  *
  *                          WHAT TO DO NEXT:
  *
@@ -86,4 +88,6 @@ public class PairManager implements Serializable {
         list.add(0, pair);
         return true;
     }
+
+    //include the search method here
 }

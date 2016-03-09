@@ -2,6 +2,17 @@ package com.changli0914.webviewtest;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.Date;
 
@@ -9,70 +20,133 @@ import java.util.Date;
  * Created by Amal on 2/29/2016.
  */
 public class SearchPairsActivity extends Activity {
-    // date, newsSource, bias, rating(missing from pair class), newsRegion, title, newsCategory
 
-    // Each of the News types that make up a pair has a date. Shouldn't the pair have the date
-    // field instead.(chang)
+    protected String title = "";
+    protected NewsCategory category = NewsCategory.NotSpecified;
+    //protected NewsSource source = NewsSource.NotSpecified; /* not included in our DB */
+    protected NewsRegion region = NewsRegion.NotSpecified;
+    protected Double bias = 0;
+    //protected Date date = null;
 
-    // How should I find pairs when they have two different News types? For e.g should I find the
-    // pair if either of news1 & news2 match the  field?
-
-    // Shouldn't the Pair class have the region type instead? A Pair should have 2 News types of
-    // the same event, therefore the same region? However, sometimes different regions are involved
-    // in one event.
-
-    // Same as above for the category and date. Shouldn't they be part of the pair class?
-    // category should be the same for both news1 and news2. Moreover, the user is categorizing
-    // the pair when he or she creates it. Same goes for the date of creation of a pair. Although
-    // it can be argued that the news types dates are important as well. Does the user care more
-    // about the date they saw the pair was added into the app, or the date of the news event?
-    // Maybe both?In which case both the News and Pair types will have a date field.
-
-    protected String title = null;
-    protected NewsCategory category = null;
-    protected NewsSource source = null;
-    protected NewsRegion region = null;
-    protected int bias = null;
-    protected Date date = null;
-
-    // method to display my page and enable the user to select information, look at chang's
-    // way of doing it
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchpairs);
-    }
 
-    // get the info from the user with some method, buttons, listeners and set variables
-    // look at chang's way of doing it
+        //list of pairs
+        //counter
+        EditText title;
+        Spinner category_spinner, region_spinner, bias_spinner;
+        ArrayAdapter<NewsCategory> category_adapter;
+        ArrayAdapter<NewsRegion> region_adapter;
+        ArrayAdapter<int> bias_adapter;
+        //date field initialization
+        //buttons cancel submit
 
-    // initialize query
-    ParseQuery<ParseObject> query = ParseQuery.getQuery("Pair");
+        //title handling
 
-    if (title != "") {
-        query.WhereContains("Title", title);
-    }
+        category_adapter = new ArrayAdapter<NewsCategory>(this, android.R.layout.simple_spinner_item, NewsCategory.values());
+        category_spinner = (Spinner) findViewById(R.id.search_pair_category);
+        category_spinner.setAdapter(category_adapter);
 
-    if (category != All) {
-        query.WhereEqualTo("Category", category);
-    }
+        category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                category = parent.getItemAtPosition(position);
+            }
 
-    if (source != All) {
-        query.WhereEqualTo("Source", source);
-    }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                category = NewsCategory.NotSpecified;
+            }
+        });
 
-    if (region != All) {
-        query.WhereEqualTo("Region", region);
-    }
+        region_adapter = new ArrayAdapter<NewsRegion>(this, android.R.layout.simple_spinner_item, NewsRegion.values());
+        region_spinner = (Spinner) findViewById(R.id.search_pair_region);
+        region_spinner.setAdapter(region_adapter);
 
-    if (bias != -1) { // set bias to -1 before the listener finds out the val from user
-        query.WhereEqualTo("Bias1", bias);  // probably need to have the pair know about
-        // news1 and news2 biases
-        query.WhereEqualTo("Bias2", bias);
-    }
+        region_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                region = parent.getItemAtPosition(position);
+            }
 
-    if (date != null) {
-        query.WhereEqualTo("Date", date);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                region = NewsRegion.NotSpecified;
+            }
+        });
+
+        bias_spinner = (Spinner) findViewById(R.id.bias);
+        bias_adapter = ArrayAdapter.createFromResource(this, R.array.biases, android.R.layout.simple_spinner_item);
+        bias_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        bias_spinner.setAdapter(bias_adapter);
+
+        category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                bias = parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                bias = 0;
+            }
+        });
+
+        Button submitButton = (Button) findViewById(R.id.search_submit);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // initialize query
+                //ParseQuery<ParseObject> query = ParseQuery.getQuery("Pair");
+
+                /*if (title != "") {
+                    query.WhereContains("Title", title);
+                }
+
+                if (category != All) {
+                    query.WhereEqualTo("Category", category);
+                }
+
+                if (source != All) {
+                    query.WhereEqualTo("Source", source);
+                }
+
+                if (region != All) {
+                    query.WhereEqualTo("Region", region);
+                }
+
+                if (bias != -1) { // set bias to -1 before the listener finds out the val from user
+                    query.WhereEqualTo("Bias1", bias);  // probably need to have the pair know about
+                    // news1 and news2 biases
+                    query.WhereEqualTo("Bias2", bias);
+                }
+
+                if (date != null) {
+                    query.WhereEqualTo("Date", date);
+                }*/
+
+                /*String title = "test";
+                String comment = "test too";
+                Pair created;
+                String url1;
+                String url2;
+                //  title =  ((EditText)v.findViewById(R.id.add_pair_title)).getText().toString();
+                // comment = ((EditText)v.findViewById(R.id.add_pair_comment)).getText().toString();
+                url1 = url1_field.getText().toString();
+                url2 = url2_field.getText().toString();
+
+                News news1 = new News(url1, "News 1", NewsSource.Yahoo, 1.0, new Date(), NewsCategory.Politics, NewsRegion.US);
+                News news2 = new News(url2, "News 2", NewsSource.ABC, 2.0, new Date(), NewsCategory.Science, NewsRegion.World);
+                created = new Pair(news1, news2, title, comment, R.drawable.google, 1);
+                //pairManager.addNewPair(created);
+                Log.d("Before put", "Putput");
+                created.put();*/
+            }
+        });
+
+        //cancel button
     }
 
     // display results when done, look up how to display

@@ -32,6 +32,8 @@ public class Pair implements Serializable{
     protected Double bias1;
     protected Double bias2;
     protected NewsCategory category;
+    //protected NewsSource source1;
+    //protected NewsSource source2;
 
     public Pair(News news1, News news2, String title, String comment, int image, int rating) {
         this.news1 = news1;

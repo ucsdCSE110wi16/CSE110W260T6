@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -67,6 +68,22 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("pairManager", pairManager);
                 intent.setClass(MainActivity.this, AddPairActivity.class);
                 /** Start New Avtivity */
+                startActivity(intent);
+            }
+        });
+
+        /** Find the Search Button */
+        Button submitSearch = (Button) findViewById(R.id.search_button);
+
+        /** Set Click Listener for Search Button */
+        submitSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                /** Transmit the PairManager to the Search PairsActivity */
+                intent.putExtra("pairManager", pairManager);
+                intent.setClass(MainActivity.this, SearchPairsActivity.class);
+                /** Start New Activity */
                 startActivity(intent);
             }
         });
