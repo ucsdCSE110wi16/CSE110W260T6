@@ -38,7 +38,6 @@ public class PairManager implements Serializable {
 
     private ParseQuery<Pair> query;
 
-
     private PairManager() {
         pairList = new LinkedList<>();
         query = ParseQuery.getQuery("Pair");

@@ -8,10 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.RatingActivityStyle" >
+    <style name="AppTheme.RatingActivityStyle" parent="Theme.AppCompat.NoActionBar" >
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">false</item>
-        <item name="android:windowNoTitle">false</item>
     </style>
 
 </resources>
