@@ -84,12 +84,7 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
         subtitle2.setOnClickListener(pairJumpHandler);
         // Image
         ImageView image = (ImageView) rowView.findViewById(R.id.item_image);
-<<<<<<< HEAD
-        Log.d("image", "Image id is " + pair.image);
-        image.setImageResource(pair.image);
-=======
         image.setImageResource(pair.getImage());
->>>>>>> c34e6e92e09e13be3a0404e79c6839651075397b
         image.setOnClickListener(pairJumpHandler);
         // News Source Image 1
         ImageView sourceImage1 = (ImageView) rowView.findViewById(R.id.item_source_image1);
