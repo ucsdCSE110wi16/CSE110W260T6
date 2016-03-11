@@ -1,7 +1,6 @@
 package com.changli0914.webviewtest;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +39,7 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 /** Transmit the Target Pair to the PairViewActivity */
-                intent.putExtra("pair", pair);
+                intent.putExtra("pairID", pair.getObjectId());
                 intent.setClass(getContext(), PairViewActivity.class);
                 /** Start The PairViewActivity */
                 getContext().startActivity(intent);
@@ -50,10 +49,10 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
         /** Set the view for one item */
         // Title
         TextView title = (TextView) rowView.findViewById(R.id.item_title);
-        title.setText(pair.title);
+        title.setText(pair.getTitle());
         // Like Count
         final TextView likeCount = (TextView)rowView.findViewById(R.id.textView_likecount);
-        likeCount.setText(pair.likeCount + "");
+        likeCount.setText(pair.getLikeCount() + "");
         // Like Button
         final ImageButton likeButton = (ImageButton)rowView.findViewById(R.id.imageButton_like);
         likeButton.setTag(false);
@@ -61,35 +60,41 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
             @Override
             public void onClick(View v) {
                 if (!(Boolean)likeButton.getTag()) {
-                    pair.likeCount += 1;
+                    pair.increment("likeCount");
+                    pair.saveInBackground();
                     likeButton.setTag(true);
-                    likeCount.setText(pair.likeCount + "");
+                    likeCount.setText(pair.getLikeCount() + "");
                     likeButton.setImageResource(R.drawable.icon_liked);
                 } else {
-                    pair.likeCount -= 1;
+                    pair.increment("likeCount", -1);
+                    pair.saveInBackground();
                     likeButton.setTag(false);
-                    likeCount.setText(pair.likeCount + "");
+                    likeCount.setText(pair.getLikeCount() + "");
                     likeButton.setImageResource(R.drawable.icon_like);
                 }
             }
         });
         // Subtitle 1
         TextView subtitle1 = (TextView) rowView.findViewById(R.id.item_subtitle1);
-        subtitle1.setText(pair.news1.title);
+        subtitle1.setText(pair.getTitle(1));
         subtitle1.setOnClickListener(pairJumpHandler);
         // Subtitle 2
         TextView subtitle2 = (TextView) rowView.findViewById(R.id.item_subtitle2);
-        subtitle2.setText(pair.news2.title);
+        subtitle2.setText(pair.getTitle(2));
         subtitle2.setOnClickListener(pairJumpHandler);
         // Image
         ImageView image = (ImageView) rowView.findViewById(R.id.item_image);
+<<<<<<< HEAD
         Log.d("image", "Image id is " + pair.image);
         image.setImageResource(pair.image);
+=======
+        image.setImageResource(pair.getImage());
+>>>>>>> c34e6e92e09e13be3a0404e79c6839651075397b
         image.setOnClickListener(pairJumpHandler);
         // News Source Image 1
         ImageView sourceImage1 = (ImageView) rowView.findViewById(R.id.item_source_image1);
         sourceImage1.setOnClickListener(pairJumpHandler);
-        switch (pair.news1.source) {
+        switch (pair.getSource(1)) {
             case ABC:
                 sourceImage1.setImageResource(R.drawable.abcnews);
                 break;
@@ -109,7 +114,7 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
         // News Source Image 2
         ImageView sourceImage2 = (ImageView) rowView.findViewById(R.id.item_source_image2);
         sourceImage2.setOnClickListener(pairJumpHandler);
-        switch (pair.news2.source) {
+        switch (pair.getSource(2)) {
             case ABC:
                 sourceImage2.setImageResource(R.drawable.abcnews);
                 break;

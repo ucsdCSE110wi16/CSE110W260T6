@@ -15,7 +15,19 @@
         android:id="@+id/main_search"
         android:icon="@drawable/ic_search_white_24dp"
         android:orderInCategory="2"
-        app:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:title="@string/filter_button"
+        android:id="@+id/main_filter"
+        android:icon="@drawable/ic_keyboard_arrow_up_white_24dp"
+        android:orderInCategory="3"
+        app:showAsAction="never"
         />
-
+    <item
+        android:title="@string/sort_button"
+        android:id="@+id/main_sort"
+        android:icon="@drawable/ic_keyboard_arrow_down_white_24dp"
+        android:orderInCategory="4"
+        app:showAsAction="never"
+        />
 </menu>
