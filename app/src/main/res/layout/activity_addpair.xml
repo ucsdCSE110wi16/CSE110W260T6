@@ -21,6 +21,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Subtitle 1"
+        android:id="@+id/add_pair_subtitle_text1" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_pair_subtitle1"
+        android:text="News 1"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="URL 1"
         android:id="@+id/add_pair_text2" />
 
@@ -28,7 +42,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/add_pair_url1"
-        android:text="http://www.google.com/"
+        android:text="http://www.ucsd.edu/"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Subtitle 2"
+        android:id="@+id/add_pair_subtitle_text2" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_pair_subtitle2"
+        android:text="News 2"
         android:layout_gravity="center_horizontal" />
 
     <TextView

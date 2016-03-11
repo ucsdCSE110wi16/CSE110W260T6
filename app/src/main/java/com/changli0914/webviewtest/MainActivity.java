@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.parse.ParseObject;
+
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,7 +32,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private PairManager pairManager = new PairManager(); /* Manage all pairs (from DB) */
+    private PairManager pairManager; /* Manage all pairs (from DB) */
     private List<Pair> pairList; /* Current Pairs List to Show */
 
     @Override
@@ -38,24 +41,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /** Init pairList */
+        pairManager = PairManager.getPairManager();
         pairList = pairManager.getPairs();
 
         /** Find the ListView */
         ListView myListView = (ListView)findViewById(R.id.listView);
         myListView.setAdapter(new MyArrayAdapter(this, pairList));
-
-        /** Set Click Listener for Each Item */
-        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                /** Transmit the Target Pair to the PairViewActivity */
-                intent.putExtra("pair", pairList.get(position));
-                intent.setClass(MainActivity.this, PairViewActivity.class);
-                /** Start The PairViewActivity */
-                startActivity(intent);
-            }
-        });
 
         /** Find the Add Button */
         ImageButton addButton = (ImageButton) findViewById(R.id.button_add);
@@ -66,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 /** Transmit the PairManager to the AddPairActivity */
-                intent.putExtra("pairManager", pairManager);
                 intent.setClass(MainActivity.this, AddPairActivity.class);
                 /** Start New Avtivity */
                 startActivity(intent);
@@ -77,52 +67,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /* Inflate the menu; this adds items to the action bar if it is present */
-        MenuInflater menuInflater = new MenuInflater(this);
-        menuInflater.inflate(R.menu.menu_activity_main, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();  // Always call the superclass method first
-        pairList = pairManager.getPairs();
-
-        /** Find the ListView */
-        ListView myListView = (ListView)findViewById(R.id.listView);
-        myListView.setAdapter(new MyArrayAdapter(this, pairList));
-
-        /** Set Click Listener for Each Item */
-        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                /** Transmit the Target Pair to the PairViewActivity */
-                intent.putExtra("pair", pairList.get(position));
-                intent.setClass(MainActivity.this, PairViewActivity.class);
-                /** Start The PairViewActivity */
-                startActivity(intent);
-            }
-        });
-
-        /** Find the Add Button */
-        ImageButton addButton = (ImageButton) findViewById(R.id.button_add);
-
-        /** Set Click Listener for Add Button */
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                /** Transmit the PairManager to the AddPairActivity */
-                intent.putExtra("pairManager", pairManager);
-                intent.setClass(MainActivity.this, AddPairActivity.class);
-                /** Start New Avtivity */
-                startActivity(intent);
-            }
-        });
-
-        // Get the Camera instance as the activity achieves full user focus
-
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.main_refresh:
+                ListView lv = ((ListView) findViewById(R.id.listView));
+                Collections.shuffle(pairList);
+                lv.setAdapter(new MyArrayAdapter(this, pairList));
+                break;
+            case R.id.main_filter:
+                break;
+            case R.id.main_sort:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
-
 }

@@ -2,10 +2,17 @@ package com.changli0914.webviewtest;
 
 import android.util.Log;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseQuery;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import bolts.Task;
 
 /**
  * TO manage paris. Core methods include:
@@ -25,65 +32,49 @@ import java.util.List;
  */
 public class PairManager implements Serializable {
 
-    private List<Pair> list = new LinkedList<>();
+    private static PairManager pairManager;
 
-    //(String url, String title, NewsSource source, double bias, Date date, NewsCategory category, NewsRegion region)
+    private List<Pair> pairList;
 
-    // Here, replace with fetch from DB. Populate news.
-    public List<Pair> getPairs() {
-        List<Pair> pairs;
-
-        ArticlePairs test = new ArticlePairs();
-        test.retrieveNEntries(10);
-        pairs = test.getPairs();
-        //Log.d("HEEEEERE", "after getPairs " + pairs.size());
+    private ParseQuery<Pair> query;
 
 
-        News news1 = new News("http://www.foxnews.com/politics/2016/02/09/" +
-                "trump-on-possible-bloomberg-run-would-love-to-see-it.html", "Trump On Possible Bloomberg",
-                NewsSource.Fox, 1.0, new Date(), NewsCategory.Politics, NewsRegion.US);
-        News news2 = new News("http://www.foxnews.com/politics/2016/02/09/" +
-                "obama-sends-congress-record-4-1t-budget-plan.html", "Obama Sends Congress Record",
-                NewsSource.ABC, 2.0, new Date(), NewsCategory.Science, NewsRegion.World);
-        News news3 = new News("https://www.yahoo.com/politics/" +
-                "hillarys-millennial-woman-problem-010617452.html", "Hillarys Millennial Woman Problem",
-                NewsSource.Fox, 4.0, new Date(), NewsCategory.Health, NewsRegion.US);
-        News news4 = new News("https://www.yahoo.com/politics/ivanka-with-her-bump-stumps-fo" +
-                "r-papa-trump-211443177.html", "Ivanka With Her Bump Stumps For Papa Trump",
-                NewsSource.BBC, 5.0, new Date(), NewsCategory.Entertainment, NewsRegion.World);
+    private PairManager() {
+        pairList = new LinkedList<>();
+        query = ParseQuery.getQuery("Pair");
+        fetchPairs();
+    }
 
-        if (pairs != null) {
-            Log.d("HEEEEERE", "Added and set");
-            for (int i = 0; i < pairs.size(); ++i) {
-                list.add(pairs.get(i));
-            }
+    public static PairManager getPairManager() {
+        if (pairManager == null) {
+            pairManager = new PairManager();
         }
-       /* list.add(new Pair(news1, news2, "Trump and Obama", "1+2", R.drawable.obama_1, 1));
-        list.add(new Pair(news1, news3, "Trump and Hillarys", "1+3", R.drawable.hillary_1, 1));
-        list.add(new Pair(news1, news4, "Trump and Trump", "1+4", R.drawable.trump_1, 1));
-        list.add(new Pair(news2, news3, "Obama and Hillarys", "2+3", R.drawable.obama_2, 1));
-        list.add(new Pair(news2, news4, "Obama and Trump", "2+4", R.drawable.obama_3, 1));
-        list.add(new Pair(news3, news4, "Hillary and Obama", "3+4", R.drawable.hillary_2, 1));
-        list.add(new Pair(news1, news2, "Trump and Obama", "1+2", R.drawable.trump_3, 1));
-        list.add(new Pair(news1, news3, "Trump and Hillarys", "1+3", R.drawable.trump_4, 1));
-        list.add(new Pair(news1, news4, "Trump and Trump", "1+4", R.drawable.trump_2, 1));
-        list.add(new Pair(news2, news3, "Obama and Hillarys", "2+3", R.drawable.hillary_1, 1));
-        list.add(new Pair(news2, news4, "Obama and Trump", "2+4", R.drawable.obama_1, 1));
-        list.add(new Pair(news3, news4, "Hillary and Obama", "3+4", R.drawable.hillary_2, 1));*/
-
-        return list;
+        return pairManager;
     }
 
-    public Boolean setFilterByDate(Date start, Date end) {
-        return true;
+    private void fetchPairs() {
+        try {
+            Task<List<Pair>> q = query.findInBackground();
+            q.waitForCompletion();
+            pairList.addAll(q.getResult());
+        } catch (Exception e) {
+            // Do nothing
+        }
     }
 
-    public Boolean cleanFilter() {
-        return true;
+    public List<Pair> getPairs() {
+        return pairList;
     }
 
-    public Boolean addNewPair(Pair pair) {
-        list.add(0, pair);
+    public Boolean addNewPair(String title, String comment, int image, ParseFile imageFile,
+                              Date date, NewsCategory category, NewsRegion region,
+                              String url1, String title1, NewsSource source1, Double bias1,
+                              String url2, String title2, NewsSource source2, Double bias2) {
+
+        Pair pair = Pair.createPair(title, comment, image, imageFile, date, category, region,
+                                    url1, title1, source1, bias1, url2, title2, source2, bias2);
+        pairList.add(0, pair);
+
         return true;
     }
 }
