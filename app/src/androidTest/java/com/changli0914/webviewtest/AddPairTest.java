@@ -120,7 +120,7 @@ public class AddPairTest {
         onView(withId(R.id.button_submit)).perform(scrollTo(), click());
 
         // check for new entry in database. Can't figure it out. But just running the app and looking in the DB it works right.
-        // this test will fail because the pair will be displayed on MainActivity, not this activity.
+        // this test will not run because pressing "submit" closes AddPairActivity
         // onData(allOf(is(instanceOf(Pair.class)), is(testPair))).check(matches(isDisplayed()));
     }
 }
