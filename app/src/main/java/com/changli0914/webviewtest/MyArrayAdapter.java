@@ -31,8 +31,14 @@ public class MyArrayAdapter extends ArrayAdapter<Pair> {
 
     @Override
     public View getView(int position, View convertView, final ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.pairlist_layout, parent, false);
+         //inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = convertView; //= inflater.inflate(R.layout.pairlist_layout, parent, false);
+        if (rowView == null) {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            rowView = inflater.inflate(R.layout.pairlist_layout, null);
+        }
+
+
         final Pair pair = pairList.get(position);
         final View.OnClickListener pairJumpHandler = new View.OnClickListener() {
             @Override
