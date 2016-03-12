@@ -177,8 +177,7 @@ public class Pair extends ParseObject{
         ParseACL acl = new ParseACL();
         acl.setPublicReadAccess(true);
         acl.setPublicWriteAccess(true);
-        pair.setACL(acl)
-        ;
+        pair.setACL(acl);
         pair.saveInBackground();
 
         return pair;
