@@ -41,7 +41,7 @@
 
 ## 2. Future Work
 
-### [1]. Completet the PairManager Class (Ronan, Amal)
+### [1]. Completed the PairManager Class (Ronan, Amal)
         Should communicate with remote DB, sync, add new pair
 
 ### [2]. Complete the MainActivity (Emil, Jeff)
@@ -55,7 +55,7 @@
     
 ### [4]. PairViewActivity (Daniel, Chang)
         Add new widgets to show titles when viewing the news (**DONE**)
-        Show Bias
+        Show Bias (Does not work)
         Permit users to rate the pair/News (**DONE**)
         Cache the page to speed the load process
 
