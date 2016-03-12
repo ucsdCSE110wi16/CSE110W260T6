@@ -19,12 +19,14 @@ public class App extends Application {
         super.onCreate();
 
         // Enable Local Datastore.
+
         Parse.enableLocalDatastore(this);
 
         ParseObject.registerSubclass(Pair.class);
 
         Parse.initialize(this);
-
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        currentUser.logOut();
         ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         // Optionally enable public read access.

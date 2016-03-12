@@ -5,6 +5,7 @@ import android.util.Log;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.io.Serializable;
@@ -53,11 +54,12 @@ public class PairManager implements Serializable {
 
     private void fetchPairs() {
         try {
-            Task<List<Pair>> q = query.findInBackground();
-            q.waitForCompletion();
-            pairList.addAll(q.getResult());
+            //Task<List<Pair>> q = query.find();_
+            List<Pair> results = query.find();
+            pairList.addAll(results);
         } catch (Exception e) {
             // Do nothing
+            e.printStackTrace();
         }
     }
 
